@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, Droplets, FlaskConical, Scale } from 'lucide-react';
 import Image from 'next/image';
