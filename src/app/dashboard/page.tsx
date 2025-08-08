@@ -1,9 +1,12 @@
+
 'use client';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, Droplets, FlaskConical, Scale } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useAuth } from '@/context/auth-context';
+import { useEffect } from 'react';
 
 const brewingTopics = [
   {
@@ -38,18 +41,26 @@ const brewingTopics = [
 
 export default function DashboardPage() {
   const router = useRouter();
+  const { isAuthenticated, isLoading, user } = useAuth();
 
-  // Placeholder authentication check
-  const isAuthenticated = true;
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      router.push('/');
+    }
+  }, [isAuthenticated, isLoading, router]);
 
-  if (!isAuthenticated) {
-    router.push('/');
-    return null; // Or a loading spinner, etc.
+  if (isLoading || !isAuthenticated) {
+    return (
+        <div className="flex justify-center items-center min-h-screen">
+            <p>Loading...</p>
+        </div>
+    );
   }
+
   return (
     <div className="container mx-auto px-4 py-8">
       <header className="mb-8">
-        <h1 className="text-4xl font-bold font-headline text-primary">Welcome, Brewer!</h1>
+        <h1 className="text-4xl font-bold font-headline text-primary">Welcome, {user?.name}!</h1>
         <p className="text-lg text-muted-foreground mt-2">
           Your journey into the world of mead making starts here.
         </p>
@@ -85,3 +96,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+    

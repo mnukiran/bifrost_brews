@@ -17,10 +17,12 @@ import { Label } from '@/components/ui/label';
 import { Mail, KeyRound } from 'lucide-react';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/context/auth-context';
 
 export default function LoginPage() {
   const router = useRouter();
   const { toast } = useToast();
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -30,36 +32,17 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          username: email,
-          password: password,
-        }),
-      });
-
-      if (response.ok) {
-        // const data = await response.json();
-        // In a real app, you'd store the access token from data.access_token
-        toast({
-          title: 'Login Successful',
-          description: "You've been successfully logged in.",
-        });
-        router.push('/dashboard');
-      } else {
-        const errorData = await response.json();
-        toast({
-          variant: 'destructive',
-          title: 'Login Failed',
-          description: errorData.detail || 'Incorrect email or password.',
-        });
-      }
-    } catch (error) {
+      await login(email, password);
       toast({
+        title: 'Login Successful',
+        description: "You've been successfully logged in.",
+      });
+      router.push('/dashboard');
+    } catch (error) {
+       toast({
         variant: 'destructive',
-        title: 'An error occurred',
-        description: 'Please try again later.',
+        title: 'Login Failed',
+        description: 'Incorrect email or password.',
       });
     } finally {
       setIsLoading(false);
@@ -129,3 +112,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
+    

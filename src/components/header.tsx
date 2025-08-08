@@ -6,11 +6,10 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { Logo } from './logo';
 import { ThemeSwitcher } from './theme-switcher';
-import { usePathname } from 'next/navigation';
+import { useAuth } from '@/context/auth-context';
 
 export function Header() {
-  const pathname = usePathname();
-  const isAuthenticated = pathname === '/dashboard';
+  const { isAuthenticated, user, logout } = useAuth();
 
   return (
     <header className="bg-card border-b sticky top-0 z-50 shadow-sm">
@@ -23,9 +22,10 @@ export function Header() {
         <div className="hidden md:flex items-center gap-2">
            <ThemeSwitcher />
            {isAuthenticated ? (
-             <Button variant="outline" asChild>
-                <Link href="/">Log Out</Link>
-              </Button>
+            <>
+              <span className="text-sm text-muted-foreground">Welcome, {user?.name}!</span>
+              <Button variant="outline" onClick={logout}>Log Out</Button>
+            </>
            ) : (
             <>
               <Button variant="outline" asChild>
@@ -55,9 +55,7 @@ export function Header() {
                 </Link>
                 <div className="flex flex-col gap-2 mt-auto">
                  {isAuthenticated ? (
-                    <Button variant="outline" asChild>
-                      <Link href="/">Log Out</Link>
-                    </Button>
+                    <Button variant="outline" onClick={logout}>Log Out</Button>
                   ) : (
                     <>
                       <Button variant="outline" asChild>
@@ -77,3 +75,5 @@ export function Header() {
     </header>
   );
 }
+
+    
