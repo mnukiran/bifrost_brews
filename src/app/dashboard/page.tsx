@@ -1,6 +1,8 @@
+'use client';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, Droplets, FlaskConical, Scale } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 const brewingTopics = [
@@ -35,6 +37,15 @@ const brewingTopics = [
 ];
 
 export default function DashboardPage() {
+  const router = useRouter();
+
+  // Placeholder authentication check
+  const isAuthenticated = true;
+
+  if (!isAuthenticated) {
+    router.push('/');
+    return null; // Or a loading spinner, etc.
+  }
   return (
     <div className="container mx-auto px-4 py-8">
       <header className="mb-8">
