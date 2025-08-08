@@ -7,12 +7,12 @@ import Link from 'next/link';
 
 export default function LoginPage() {
   return (
-    <div className="flex items-center justify-center min-h-full py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-center min-h-full py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="w-full max-w-md space-y-8">
-        <Card>
+        <Card className="shadow-2xl">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-headline font-bold">Log In to Your Account</CardTitle>
-            <CardDescription>Enter your credentials to access your mead recipes.</CardDescription>
+            <CardTitle className="text-3xl font-headline font-bold text-primary">Log In</CardTitle>
+            <CardDescription>Welcome back! Access your Bifrost Brews account.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
@@ -31,7 +31,9 @@ export default function LoginPage() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
-            <Button className="w-full">Log In</Button>
+            <Button className="w-full" asChild>
+              <Link href="/dashboard">Log In</Link>
+            </Button>
             <p className="text-sm text-center text-muted-foreground">
               Don't have an account?{' '}
               <Button variant="link" className="p-0" asChild>

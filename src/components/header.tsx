@@ -8,6 +8,7 @@ import { ThemeSwitcher } from './theme-switcher';
 
 const navLinks = [
   { href: '/', label: 'Home' },
+  { href: '/dashboard', label: 'Dashboard' },
 ];
 
 export function Header() {

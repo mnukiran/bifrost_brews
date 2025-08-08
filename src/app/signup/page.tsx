@@ -2,19 +2,26 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Mail, KeyRound } from 'lucide-react';
+import { Mail, KeyRound, User } from 'lucide-react';
 import Link from 'next/link';
 
 export default function SignupPage() {
   return (
-    <div className="flex items-center justify-center min-h-full py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-center min-h-full py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="w-full max-w-md space-y-8">
-        <Card>
+        <Card className="shadow-2xl">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-headline font-bold">Create an Account</CardTitle>
+            <CardTitle className="text-3xl font-headline font-bold text-primary">Create an Account</CardTitle>
             <CardDescription>Join Bifrost Brews and start your mead-making journey.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
+             <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input id="name" type="text" placeholder="Your Name" required className="pl-10" />
+              </div>
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email Address</Label>
               <div className="relative">
@@ -38,7 +45,9 @@ export default function SignupPage() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
-            <Button className="w-full">Sign Up</Button>
+            <Button className="w-full" asChild>
+                <Link href="/dashboard">Sign Up</Link>
+            </Button>
             <p className="text-sm text-center text-muted-foreground">
               Already have an account?{' '}
               <Button variant="link" className="p-0" asChild>
