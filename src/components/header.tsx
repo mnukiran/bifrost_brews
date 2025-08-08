@@ -3,11 +3,15 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Glasses } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Logo } from './logo';
 import { ThemeSwitcher } from './theme-switcher';
+import { usePathname } from 'next/navigation';
 
 export function Header() {
+  const pathname = usePathname();
+  const isAuthenticated = pathname === '/dashboard';
+
   return (
     <header className="bg-card border-b sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 flex justify-between items-center h-20">
@@ -18,12 +22,20 @@ export function Header() {
 
         <div className="hidden md:flex items-center gap-2">
            <ThemeSwitcher />
-          <Button variant="outline" asChild>
-            <Link href="/">Log In</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/signup">Sign Up</Link>
-          </Button>
+           {isAuthenticated ? (
+             <Button variant="outline" asChild>
+                <Link href="/">Log Out</Link>
+              </Button>
+           ) : (
+            <>
+              <Button variant="outline" asChild>
+                <Link href="/">Log In</Link>
+              </Button>
+              <Button asChild>
+                <Link href="/signup">Sign Up</Link>
+              </Button>
+            </>
+           )}
         </div>
 
         <div className="md:hidden flex items-center gap-2">
@@ -42,12 +54,20 @@ export function Header() {
                   <span>Bifrost Brews</span>
                 </Link>
                 <div className="flex flex-col gap-2 mt-auto">
-                  <Button variant="outline" asChild>
-                    <Link href="/">Log In</Link>
-                  </Button>
-                  <Button asChild>
-                    <Link href="/signup">Sign Up</Link>
-                  </Button>
+                 {isAuthenticated ? (
+                    <Button variant="outline" asChild>
+                      <Link href="/">Log Out</Link>
+                    </Button>
+                  ) : (
+                    <>
+                      <Button variant="outline" asChild>
+                        <Link href="/">Log In</Link>
+                      </Button>
+                      <Button asChild>
+                        <Link href="/signup">Sign Up</Link>
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </SheetContent>
