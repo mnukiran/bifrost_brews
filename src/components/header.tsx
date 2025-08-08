@@ -8,7 +8,6 @@ import { ThemeSwitcher } from './theme-switcher';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/recipe-ai', label: 'Recipe AI' },
 ];
 
 export function Header() {
