@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import {
  Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle
@@ -34,9 +35,9 @@ export default function LoginPage() {
  </div>
  </CardContent>
  <CardFooter className="flex flex-col gap-4">
- <Button className="w-full">
- Log In
- </Button>
+  <Button className="w-full" asChild>
+    <Link href="/dashboard">Log In</Link>
+  </Button>
  <p className="text-sm text-center text-muted-foreground">
  Don't have an account?{' '}
  <Button variant="link" className="p-0" asChild>

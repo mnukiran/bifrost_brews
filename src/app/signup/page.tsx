@@ -47,12 +47,12 @@ export default function SignupPage() {
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
             <Button className="w-full" asChild>
-                <Link href="/dashboard">Sign Up</Link>
+                <Link href="/">Sign Up</Link>
             </Button>
             <p className="text-sm text-center text-muted-foreground">
               Already have an account?{' '}
               <Button variant="link" className="p-0" asChild>
-                <Link href="/login">Log in</Link>
+                <Link href="/">Log in</Link>
               </Button>
             </p>
           </CardFooter>

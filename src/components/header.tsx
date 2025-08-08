@@ -7,11 +7,6 @@ import { Menu, Glasses } from 'lucide-react';
 import { Logo } from './logo';
 import { ThemeSwitcher } from './theme-switcher';
 
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/dashboard', label: 'Dashboard' },
-];
-
 export function Header() {
   return (
     <header className="bg-card border-b sticky top-0 z-50 shadow-sm">
@@ -21,18 +16,10 @@ export function Header() {
           <span>Bifrost Brews</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <Button key={link.href} variant="ghost" asChild>
-              <Link href={link.href}>{link.label}</Link>
-            </Button>
-          ))}
-        </nav>
-
         <div className="hidden md:flex items-center gap-2">
            <ThemeSwitcher />
           <Button variant="outline" asChild>
-            <Link href="/login">Log In</Link>
+            <Link href="/">Log In</Link>
           </Button>
           <Button asChild>
             <Link href="/signup">Sign Up</Link>
@@ -54,16 +41,9 @@ export function Header() {
                   <Logo className="h-8 w-8 text-primary" />
                   <span>Bifrost Brews</span>
                 </Link>
-                <nav className="flex flex-col gap-4">
-                  {navLinks.map((link) => (
-                    <Button key={link.href} variant="ghost" className="justify-start text-lg" asChild>
-                      <Link href={link.href}>{link.label}</Link>
-                    </Button>
-                  ))}
-                </nav>
                 <div className="flex flex-col gap-2 mt-auto">
                   <Button variant="outline" asChild>
-                    <Link href="/login">Log In</Link>
+                    <Link href="/">Log In</Link>
                   </Button>
                   <Button asChild>
                     <Link href="/signup">Sign Up</Link>
