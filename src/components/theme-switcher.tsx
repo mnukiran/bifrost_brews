@@ -23,7 +23,7 @@ export function ThemeSwitcher() {
   const [theme, setTheme] = React.useState<Theme>('default');
 
   React.useEffect(() => {
-    document.body.classList.remove(...themes.map(t => t.className));
+    document.body.classList.remove(...themes.map(t => t.className).filter(Boolean));
     const selectedTheme = themes.find(t => t.value === theme);
     if (selectedTheme && selectedTheme.className) {
       document.body.classList.add(selectedTheme.className);
